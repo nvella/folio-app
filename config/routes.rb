@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'landing/index'
+  resources :folio
 
   root 'landing#index'
 end
