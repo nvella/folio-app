@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20160907024148) do
     t.integer  "user_id"
     t.string   "name"
     t.string   "description"
-    t.         "tags"
+    t.string   "tags"
     t.index ["user_id"], name: "index_folios_on_user_id"
   end
 
