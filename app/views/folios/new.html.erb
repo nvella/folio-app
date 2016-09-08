@@ -2,7 +2,7 @@
   <h1>Create a Folio</h1>
 </div>
 
-<%= form_for :folio do |f| %>
+<%= form_for :folio, url: folios_path do |f| %>
   <div class="form-group">
     <%= f.label :name %><br>
     <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
