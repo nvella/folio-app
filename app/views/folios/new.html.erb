@@ -3,6 +3,17 @@
 </div>
 
 <%= form_for :folio, url: folios_path do |f| %>
+  <% if @folio.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <p><b>Whoops.</b> Looks like there were some issues with your request</p>
+      <ul>
+        <% @folio.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <%= f.label :name %><br>
     <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>

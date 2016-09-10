@@ -4,14 +4,17 @@ class FoliosController < ApplicationController
   end
 
   def new
-
+    @folio = Folio.new
   end
 
   def create
     @folio = Folio.new(folio_params)
 
-    @folio.save
-    redirect_to @folio
+    if @folio.save
+      redirect_to @folio
+    else
+      render 'new'
+    end
   end
 
   def show
