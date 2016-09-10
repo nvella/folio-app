@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1><%= @folio.name %></h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h5>Description</h5>
+    <p class="lead">
+      <%= @folio.description %>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <h5>Tags</h5>
+    <% @folio.tags.split(',').map {|t| t.strip}.each do |tag| %>
+    <div class="tag"><%= tag %></div>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <h5>About the Author</5>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <hr>
+    <h5>Comments</h5>
+    <p>Comment section goes here</p>
+  </div>
+</div>

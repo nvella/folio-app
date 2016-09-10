@@ -15,10 +15,11 @@ class FoliosController < ApplicationController
   end
 
   def show
+    @folio = Folio.find(params[:id])
   end
 
   private
   def folio_params
-    params.require(:folio).permit(:title, :description, :tags)
+    params.require(:folio).permit(:name, :description, :tags)
   end
 end
