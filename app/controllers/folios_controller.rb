@@ -4,11 +4,13 @@ class FoliosController < ApplicationController
   end
 
   def new
+    needs_authentication
     @folio = Folio.new
   end
 
   def create
-    @folio = Folio.new(folio_params)
+    needs_authentication
+    @folio = Folio.new(folio_params.merge(user_id: current_user.id))
 
     if @folio.save
       redirect_to @folio
