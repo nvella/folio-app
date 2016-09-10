@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160910143551) do
+ActiveRecord::Schema.define(version: 20160910161448) do
 
   create_table "folios", force: :cascade do |t|
     t.datetime "created_at",  null: false
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20160910143551) do
     t.string   "name"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.string   "image"
   end
 
 end
