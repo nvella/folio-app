@@ -4,7 +4,13 @@
 
 <div class="row">
   <div class="col-md-12 folio-button-bar">
-    <a class="btn btn-primary" href="">Open Folio</a>
+    <% if @first_folio_page.nil? && current_user != @folio.user %>
+      This folio has no pages.
+    <% elsif @first_folio_page.nil? %>
+      <%= link_to 'Create First Page', new_folio_page_path, class: 'btn btn-success' %>
+    <% else %>
+      <%= link_to 'Open Folio', @first_folio_page, class: 'btn btn-primary' %>
+    <% end %>
     <% if current_user == @folio.user %>
       <a class="btn btn-default">Edit Info</a>
     <% end %>

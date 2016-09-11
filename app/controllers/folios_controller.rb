@@ -21,6 +21,7 @@ class FoliosController < ApplicationController
 
   def show
     @folio = Folio.find(params[:id])
+    @first_folio_page = @folio.folio_pages.order(:page_order).first
   end
 
   private
