@@ -12,7 +12,7 @@
       <%= link_to 'Open Folio', @first_folio_page, class: 'btn btn-primary' %>
     <% end %>
     <% if current_user == @folio.user %>
-      <a class="btn btn-default">Edit Info</a>
+      <%= link_to 'Edit Info', edit_folio_path, class: 'btn btn-default' %>
     <% end %>
   </div>
 </div>
