@@ -1,0 +1,31 @@
+<%= form_for :folio, url: folios_path do |f| %>
+  <% if @folio.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <p><b>Whoops.</b> Looks like there were some issues with your request</p>
+      <ul>
+        <% @folio.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, class: 'form-control', placeholder: 'Description' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :tags %><br>
+    <%= f.text_field :tags, class: 'form-control', placeholder: 'graphic design, photoshop' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-primary btn-lg btn-block', value: 'Create' %>
+  </div>
+<% end %>
