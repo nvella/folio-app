@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  folio_id: 
+  page_order: 
+  title: MyString
+
+two:
+  folio_id: 
+  page_order: 
+  title: MyString
