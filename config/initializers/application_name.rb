@@ -1,1 +1,1 @@
-APP_NAME = 'nxk Folio'
+APP_NAME = 'folio-app'
