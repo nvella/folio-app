@@ -43,7 +43,7 @@ class FoliosController < ApplicationController
 
   def show
     @folio = Folio.find(params[:id])
-    rause 'Folio doesn\'t exist' if @folio.nil?
+    raise 'Folio doesn\'t exist' if @folio.nil?
     @first_folio_page = @folio.folio_pages.order(:page_order).first
   end
 
