@@ -2,23 +2,21 @@
   <h1>Browse Folios</h1>
 </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <table class="table">
-        <tr>
-          <th>Folio Name</th>
-          <th>Creator</th>
-          <th>Tags</th>
-        </tr>
-        <% @folios.each do |folio| %>
-        <tr>
-          <td><%= link_to folio.name, folio %></td>
-          <td><%= folio.user.name %></td>
-          <td><%= render 'tags', tags: folio.tags %></td>
-        </tr>
-        <% end %>
-      </table>
-    </div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>Folio Name</th>
+        <th>Creator</th>
+        <th>Tags</th>
+      </tr>
+      <% @folios.each do |folio| %>
+      <tr>
+        <td><%= link_to folio.name, folio %></td>
+        <td><%= folio.user.name %></td>
+        <td><%= render 'tags', tags: folio.tags %></td>
+      </tr>
+      <% end %>
+    </table>
   </div>
 </div>
