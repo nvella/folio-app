@@ -1,4 +1,4 @@
-<%= form_for :folio, url: folios_path do |f| %>
+<%= form_for @folio, url: folios_path do |f| %>
   <% if @folio.errors.any? %>
     <div class="alert alert-danger" role="alert">
       <p><b>Whoops.</b> Looks like there were some issues with your request</p>
