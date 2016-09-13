@@ -7,7 +7,8 @@
     <% if @first_folio_page.nil? && current_user != @folio.user %>
       This folio has no pages.
     <% elsif @first_folio_page.nil? %>
-      <%= link_to 'Create First Page', new_folio_page_path, class: 'btn btn-success' %>
+      <%= link_to 'Create First Page', new_folio_page_path(folio_id: @folio.id),
+        class: 'btn btn-success' %>
     <% else %>
       <%= link_to 'Open Folio', @first_folio_page, class: 'btn btn-primary' %>
     <% end %>

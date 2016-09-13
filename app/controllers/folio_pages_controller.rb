@@ -10,7 +10,8 @@ class FolioPagesController < ApplicationController
 
   def create
     needs_authentication
-    @folio_page = FolioPage.new(folio_page_params)
+    @folio_page = FolioPage.new(folio_page_params.merge(folio:
+      Folio.find(params[:folio_id])))
 
     if @folio_page.save
       redirect_to @folio_page
@@ -27,6 +28,6 @@ class FolioPagesController < ApplicationController
 
   private
   def folio_page_params
-    params.require(:folio_page).permit(:title)
+    params.require(:folio_pages).permit(:title)
   end
 end

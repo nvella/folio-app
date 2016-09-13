@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:create, :destroy]
   resources :folios
+
   resources :folio_pages, path: '/folios/pages'
 
   root 'landing#index'
