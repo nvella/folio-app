@@ -1,4 +1,4 @@
-<%= form_for :folio_pages, url: folio_pages_path do |f| %>
+<%= form_for @folio_page do |f| %>
   <% if @folio_page.errors.any? %>
     <div class="alert alert-danger" role="alert">
       <p><b>Whoops.</b> Looks like there were some issues with your request</p>
@@ -18,4 +18,6 @@
   <div class="form-group">
     <%= f.submit submit_text, class: 'btn btn-primary btn-lg btn-block' %>
   </div>
+
+  <%= hidden_field_tag :folio_id, @folio_page.folio_id %>
 <% end %>
