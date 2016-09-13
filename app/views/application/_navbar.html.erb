@@ -13,7 +13,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-left">
         <li><%= link_to 'Create', new_folio_path, id: 'new_folio' %></li>
-        <li><a>Browse</a></li>
+        <li><%= link_to 'Browse', folios_path, id: 'browse_folios' %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>

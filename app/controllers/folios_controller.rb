@@ -1,6 +1,7 @@
 class FoliosController < ApplicationController
   def index
-
+    # TODO pagination
+    @folios = Folio.all
   end
 
   def new
