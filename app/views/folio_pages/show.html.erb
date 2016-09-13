@@ -1,0 +1,8 @@
+<ul class="nav nav-tabs">
+  <% @folio.folio_pages.order(:page_order).each do |folio_page| %>
+  <li role="presentation" <% if folio_page == @folio_page %>class="active"<%end%>>
+    <%= link_to folio_page.title, folio_page %>
+  </li>
+  <% end %>
+  <li role="presentation"><%= link_to '+', new_folio_page_path(folio_id: @folio.id) %></li>
+</ul>
