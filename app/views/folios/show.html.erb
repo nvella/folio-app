@@ -30,9 +30,7 @@
 <div class="row">
   <div class="col-md-6">
     <h5>Tags</h5>
-    <% @folio.tags.split(',').map {|t| t.strip}.each do |tag| %>
-    <div class="tag"><%= tag %></div>
-    <% end %>
+    <%= render 'tags', tags: @folio.tags %>
   </div>
   <div class="col-md-6">
     <h5>About the Author</h5>
