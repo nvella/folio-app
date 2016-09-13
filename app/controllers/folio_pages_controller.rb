@@ -5,7 +5,7 @@ class FolioPagesController < ApplicationController
 
   def new
     needs_authentication
-    @folio_page = FolioPage.new
+    @folio_page = FolioPage.new(folio_id: params[:folio_id])
   end
 
   def create
@@ -28,6 +28,6 @@ class FolioPagesController < ApplicationController
 
   private
   def folio_page_params
-    params.require(:folio_pages).permit(:title)
+    params.require(:folio_page).permit(:title, :folio_id)
   end
 end
