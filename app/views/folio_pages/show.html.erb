@@ -1,16 +1,33 @@
-<ul class="nav nav-tabs">
-  <% @folio.folio_pages.order(:page_order).each do |folio_page| %>
-  <li role="presentation" <% if folio_page == @folio_page %>class="active"<%end%>>
-    <%= link_to folio_page.title, folio_page %>
-  </li>
-  <% end %>
-  <% if current_user_owns_folio? %>
-    <li role="presentation"><%= link_to '+', new_folio_page_path(folio_id: @folio.id) %></li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="col-md-12">
+    <ul class="nav nav-tabs">
+      <% @folio.folio_pages.order(:page_order).each do |folio_page| %>
+      <li role="presentation" <% if folio_page == @folio_page %>class="active"<%end%>>
+        <%= link_to folio_page.title, folio_page %>
+      </li>
+      <% end %>
+      <% if current_user_owns_folio? %>
+        <li role="presentation"><%= link_to '+', new_folio_page_path(folio_id: @folio.id) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
 <% @rows.each do |row| %>
-  <%= row.inspect %>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="well">...</div>
+    </div>
+    <div class="col-md-3">
+      <div class="well">...</div>
+    </div>
+    <div class="col-md-3">
+      <div class="well">...</div>
+    </div>
+    <div class="col-md-3">
+      <div class="well">...</div>
+    </div>
+  </div>
 <% end %>
 
 <% if current_user_owns_folio? %>
