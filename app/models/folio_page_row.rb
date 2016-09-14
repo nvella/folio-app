@@ -1,0 +1,2 @@
+class FolioPageRow < ApplicationRecord
+end
