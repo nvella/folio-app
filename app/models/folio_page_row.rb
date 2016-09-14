@@ -7,7 +7,9 @@ class FolioPageRow < ApplicationRecord
   after_create :make_cols
 
   def make_cols
-    4.times { folio_page_row_columns.create(folio_id: self.folio_id,
-      folio_page_id: self.folio_page_id) }
+    4.times do |i|
+      folio_page_row_columns.create(folio_id: self.folio_id,
+        folio_page_id: self.folio_page_id, column_width: 1, column_order: i)
+    end
   end
 end

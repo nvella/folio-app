@@ -15,18 +15,11 @@
 
 <% @rows.each do |row| %>
   <div class="row">
-    <div class="col-md-3">
-      <div class="well">...</div>
-    </div>
-    <div class="col-md-3">
-      <div class="well">...</div>
-    </div>
-    <div class="col-md-3">
-      <div class="well">...</div>
-    </div>
-    <div class="col-md-3">
-      <div class="well">...</div>
-    </div>
+    <% row.folio_page_row_columns.each do |col| %>
+      <div class="col-md-<%= col.column_width * 3 %>">
+        <div class="well">...</div>
+      </div>
+    <% end %>
   </div>
 <% end %>
 
