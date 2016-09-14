@@ -1,6 +1,4 @@
 class FolioPagesController < ApplicationController
-  helper_method :current_user_owns_folio?
-
   def index
 
   end
@@ -27,10 +25,6 @@ class FolioPagesController < ApplicationController
     @folio = @folio_page.folio
     @rows = @folio_page.folio_page_rows
     raise 'Folio Page doesn\'t exist' if @folio.nil?
-  end
-
-  def current_user_owns_folio?
-    current_user == @folio.user
   end
 
   private
