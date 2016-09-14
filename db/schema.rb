@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914011913) do
+ActiveRecord::Schema.define(version: 20160914031357) do
+
+  create_table "folio_page_row_columns", force: :cascade do |t|
+    t.integer  "folio_id"
+    t.integer  "folio_page_id"
+    t.integer  "folio_page_row_id"
+    t.integer  "column_order"
+    t.integer  "column_width"
+    t.string   "type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
 
   create_table "folio_page_rows", force: :cascade do |t|
     t.integer  "folio_id"
