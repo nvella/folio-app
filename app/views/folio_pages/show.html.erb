@@ -4,7 +4,20 @@
     <%= link_to folio_page.title, folio_page %>
   </li>
   <% end %>
-  <% if @folio.user == current_user %>
+  <% if current_user_owns_folio? %>
     <li role="presentation"><%= link_to '+', new_folio_page_path(folio_id: @folio.id) %></li>
   <% end %>
 </ul>
+
+<% @rows.each do |row| %>
+  <%= row.inspect %>
+<% end %>
+
+<% if current_user_owns_folio? %>
+  <div class="row">
+    <div class="col-md-12">
+      <button type="button" class="btn btn-primary btn-lg">
+        <b>+</b>
+      </button>
+    </div>
+<% end %>
