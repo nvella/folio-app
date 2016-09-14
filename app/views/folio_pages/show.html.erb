@@ -16,8 +16,12 @@
 <% if current_user_owns_folio? %>
   <div class="row">
     <div class="col-md-12">
-      <button type="button" class="btn btn-primary btn-lg">
-        <b>+</b>
-      </button>
+      <%= form_for :folio_page_row, url: folio_page_rows_path do |f| %>
+        <%= hidden_field_tag :folio_id, @folio.id %>
+        <%= hidden_field_tag :folio_page_id, @folio_page.id %>
+        <%= hidden_field_tag :row_order, @rows.length %>
+        <%= f.submit 'Add', class: 'btn btn-primary btn-lg btn-block' %>
+      <% end %>
     </div>
+  </div>
 <% end %>

@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def needs_own_folio
-    raise 'You do not own this folio' if !current_user_owns_folio
+    raise 'You do not own this folio' if !current_user_owns_folio?
   end
 
   def needs_authentication
