@@ -4,5 +4,7 @@
     <%= link_to folio_page.title, folio_page %>
   </li>
   <% end %>
-  <li role="presentation"><%= link_to '+', new_folio_page_path(folio_id: @folio.id) %></li>
+  <% if @folio.user == current_user %>
+    <li role="presentation"><%= link_to '+', new_folio_page_path(folio_id: @folio.id) %></li>
+  <% end %>
 </ul>
