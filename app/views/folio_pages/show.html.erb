@@ -17,7 +17,13 @@
   <div class="row">
     <% row.folio_page_row_columns.each do |col| %>
       <div class="col-md-<%= col.column_width * 3 %>">
-        <div class="well">...</div>
+        <div class="well">
+          <div class="btn-group btn-group-xs" role="group" aria-label="...">
+            <button type="button" class="btn btn-default">Caption</button>
+            <button type="button" class="btn btn-default">Image</button>
+            <button type="button" class="btn btn-default" onclick="mergeRight(<%= col[:id] %>)">Merge Right</button>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>
@@ -34,4 +40,17 @@
       <% end %>
     </div>
   </div>
+
+  <%= form_for :folio_page_row, html: {id: 'merge_folio'}, url: folio_page_merge_row_column_path(@folio_page) do |f| %>
+  <%= hidden_field_tag :folio_id, @folio.id, id: 'merge_folio_id' %>
+  <%= hidden_field_tag :folio_page_id, @folio_page.id, id: 'merge_folio_page_id' %>
+  <%= hidden_field_tag :folio_page_row_column_id, 0, id: 'merge_folio_page_row_column_id' %>
+  <% end %>
+
+  <script>
+    function mergeRight(id) {
+      $('#merge_folio_page_row_column_id')[0].value = id;
+      $('#merge_folio')[0].submit();
+    }
+  </script>
 <% end %>
