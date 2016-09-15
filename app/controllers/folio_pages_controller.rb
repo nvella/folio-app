@@ -54,17 +54,14 @@ class FolioPagesController < ApplicationController
     col_1 = folio_page_row.folio_page_row_columns.
       find(params[:folio_page_row_column_id])
 
-    raise 'Cannot merge row column with no adjacent row column' if
-      col_1.column_width + col_1.column_order >= 4
-
-    col_2 = folio_page_row.folio_page_row_columns.where(column_order:
-      col_1.column_order + 1).first
-    raise 'Adjacent row doesn\'t exist' if col_2.nil?
+    col_2 = folio_page_row.folio_page_row_columns.where('column_order > ?',
+      col_1.column_order).first
+    raise 'Adjacent column doesn\'t exist' if col_2.nil?
 
     col_1.column_width += col_2.column_width
     col_1.save
     col_2.destroy
-    
+
     redirect_to @folio_page
   end
 
