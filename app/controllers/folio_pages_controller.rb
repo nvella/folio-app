@@ -43,6 +43,14 @@ class FolioPagesController < ApplicationController
     end
   end
 
+  def merge_row_column
+    col_1 = FolioPageRowColumn.find(params[:col_1_id])
+    col_2 = FolioPageRowColumn.find(params[:col_2_id])
+
+    needs_authentication
+    needs_own_folio
+  end
+
   private
   def folio_page_params
     params.require(:folio_page).permit(:title, :folio_id)
