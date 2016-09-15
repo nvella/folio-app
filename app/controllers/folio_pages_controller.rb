@@ -27,8 +27,28 @@ class FolioPagesController < ApplicationController
     raise 'Folio Page doesn\'t exist' if @folio.nil?
   end
 
+  def add_row
+    @folio = Folio.find(params[:folio_id])
+    @folio_page = FolioPage.find(params[:folio_page_id])
+    @folio_page_row = FolioPageRow.new(folio_page_row_params.merge(folio:
+      @folio, folio_page: @folio_page))
+
+    needs_authentication
+    needs_own_folio
+
+    if @folio_page_row.save
+      redirect_to @folio_page
+    else
+      render json: {status: 'error', error: @folio_page.errors.full_messages}
+    end
+  end
+
   private
   def folio_page_params
     params.require(:folio_page).permit(:title, :folio_id)
+  end
+
+  def folio_page_row_params
+    params.permit(:folio_id, :folio_page_id, :row_order)
   end
 end

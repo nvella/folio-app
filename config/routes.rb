@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   resources :sessions, only: [:create, :destroy]
   resources :folios
 
-  resources :folio_pages, path: '/folios/pages'
-  resources :folio_page_rows, path: '/folios/pages/rows', only: [:create]
+  resources :folio_pages, path: 'folios/pages' do
+    post 'add_row', to: 'add_row'
+  end
 
   root 'landing#index'
 end
