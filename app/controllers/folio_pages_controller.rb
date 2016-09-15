@@ -30,7 +30,7 @@ class FolioPagesController < ApplicationController
   def add_row
     @folio = Folio.find(params[:folio_id])
     @folio_page = FolioPage.find(params[:folio_page_id])
-    @folio_page_row = FolioPageRow.new(folio_page_row_params.merge(folio:
+    @folio_page_row = FolioPageRow.new(add_row_params.merge(folio:
       @folio, folio_page: @folio_page))
 
     needs_authentication
@@ -44,11 +44,28 @@ class FolioPagesController < ApplicationController
   end
 
   def merge_row_column
-    col_1 = FolioPageRowColumn.find(params[:col_1_id])
-    col_2 = FolioPageRowColumn.find(params[:col_2_id])
+    @folio = Folio.find(params[:folio_id])
+    @folio_page = FolioPage.find(params[:folio_page_id])
 
     needs_authentication
     needs_own_folio
+
+    folio_page_row = FolioPageRow.find(params[:folio_page_row_id])
+    col_1 = folio_page_row.folio_page_row_columns.
+      find(params[:folio_page_row_column_id])
+
+    raise 'Cannot merge row column with no adjacent row column' if
+      col_1.column_width + col_1.column_order >= 4
+
+    col_2 = folio_page_row.folio_page_row_columns.where(column_order:
+      col_1.column_order + 1).first
+    raise 'Adjacent row doesn\'t exist' if col_2.nil?
+
+    col_1.column_width += col_2.column_width
+    col_1.save
+    col_2.destroy
+    
+    redirect_to @folio_page
   end
 
   private
@@ -56,7 +73,12 @@ class FolioPagesController < ApplicationController
     params.require(:folio_page).permit(:title, :folio_id)
   end
 
-  def folio_page_row_params
+  def merge_row_column_params
+    params.permit(:folio_id, :folio_page_id, :folio_page_row_id,
+      :folio_page_row_column_id)
+  end
+
+  def add_row_params
     params.permit(:folio_id, :folio_page_id, :row_order)
   end
 end
