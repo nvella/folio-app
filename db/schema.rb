@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160924091139) do
+ActiveRecord::Schema.define(version: 20161006093909) do
+
+  create_table "captions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "folio_page_row_columns", force: :cascade do |t|
     t.integer  "folio_id"
