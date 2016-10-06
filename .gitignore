@@ -26,4 +26,4 @@
 .DS_Store
 
 # Sensitive config, holding keys
-config/initializers/settings.rb
+config/initializers/00_settings.rb
