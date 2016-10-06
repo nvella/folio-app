@@ -65,6 +65,25 @@ class FolioPagesController < ApplicationController
     redirect_to @folio_page
   end
 
+  def create_caption
+    @folio_page = FolioPage.find(params[:folio_page_id])
+    @folio = @folio_page.folio
+
+    needs_authentication
+    needs_own_folio
+
+    col = FolioPageRowColumn.find(params[:at].to_i)
+    fail 'no column with id' if col.nil?
+    new_caption = Caption.new(user_id: @folio.user_id,
+      folio_page_id: @folio_page.id)
+    new_caption.save!
+
+    col.caption_id = new_caption.id
+    col.save!
+
+    redirect_to(edit_caption_path(new_caption))
+  end
+
   private
   def folio_page_params
     params.require(:folio_page).permit(:title, :folio_id)
