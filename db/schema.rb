@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161007081628) do
+ActiveRecord::Schema.define(version: 20161007122819) do
 
   create_table "captions", force: :cascade do |t|
     t.integer  "user_id"
@@ -18,6 +18,14 @@ ActiveRecord::Schema.define(version: 20161007081628) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "folio_page_id"
+  end
+
+  create_table "folio_comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "folio_id"
+    t.string   "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "folio_page_row_columns", force: :cascade do |t|

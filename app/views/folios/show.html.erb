@@ -40,9 +40,32 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6">
     <hr>
-    <h5>Comments</h5>
-    <p>Comment section goes here</p>
+    <h3>Comments</h3>
+
+    <% if @folio.folio_comments.empty? %>
+      <p><b>No comments here.</b> Say something nice...</p>
+    <% else %>
+      <% @folio.folio_comments.each do |comment| %>
+        <%= render 'folio_comments/comment', comment: comment %>
+      <% end %>
+    <% end %>
+
+    <% unless current_user.nil? %>
+      <div class="well">
+        <%= form_for :folio_comment, url: folio_comments_path do |f| %>
+          <div class="form-group">
+            <%= f.text_area :text, class: 'form-control', placeholder: 'y o u r  o p i n i o n s  h e r e' %>
+          </div>
+
+          <%= f.hidden_field :folio_id, value: @folio.id %>
+
+          <div class="form-group">
+            <%= f.submit 'Submit Comment', class: 'btn btn-primary btn-block' %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

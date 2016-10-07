@@ -1,0 +1,2 @@
+module FolioCommentsHelper
+end
