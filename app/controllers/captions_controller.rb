@@ -6,7 +6,7 @@ class CaptionsController < ApplicationController
   def update
     needs_authentication
     @caption = Caption.find(params[:id])
-    rause 'Caption doesn\'t exist' if @caption.nil?
+    raise 'Caption doesn\'t exist' if @caption.nil?
     raise 'You don\'t have permission to edit this folio' \
       if current_user != @caption.user
 

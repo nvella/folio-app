@@ -55,3 +55,6 @@ gem "omniauth-google-oauth2", "~> 0.4.1"
 
 # Redcarpet Markdown
 gem 'redcarpet'
+
+# Carrierwave file storage
+gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'

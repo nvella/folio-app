@@ -27,3 +27,6 @@
 
 # Sensitive config, holding keys
 config/initializers/00_settings.rb
+
+# Uploads
+public/uploads

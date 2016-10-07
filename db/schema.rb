@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006223638) do
+ActiveRecord::Schema.define(version: 20161007081628) do
 
   create_table "captions", force: :cascade do |t|
     t.integer  "user_id"
@@ -57,6 +57,14 @@ ActiveRecord::Schema.define(version: 20161006223638) do
     t.string   "description"
     t.string   "tags"
     t.index ["user_id"], name: "index_folios_on_user_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "image"
+    t.integer  "folio_page_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|
