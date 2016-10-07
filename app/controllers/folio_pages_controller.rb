@@ -103,6 +103,20 @@ class FolioPagesController < ApplicationController
     redirect_to(edit_image_path(new_image))
   end
 
+  def delete_content
+    @folio_page = FolioPage.find(params[:folio_page_id])
+    @folio = @folio_page.folio
+
+    needs_authentication
+    needs_own_folio
+
+    col = FolioPageRowColumn.find(params[:at].to_i)
+    col.image.destroy unless col.image.nil?
+    col.caption.destroy unless col.caption.nil?
+
+    redirect_to(@folio_page)
+  end
+
   private
   def folio_page_params
     params.require(:folio_page).permit(:title, :folio_id)

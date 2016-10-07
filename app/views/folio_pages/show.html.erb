@@ -9,6 +9,9 @@
       <% if current_user_owns_folio? %>
         <li role="presentation"><%= link_to '+', new_folio_page_path(folio_id: @folio.id) %></li>
       <% end %>
+      <% if current_user_owns_folio? %>
+      <a class="btn btn-primary" style="float: right;" id="editModeBtn" href="javascript:toggleEditMode()">Edit Mode (on)</a>
+      <% end %>
     </ul>
   </div>
 </div>
@@ -23,17 +26,33 @@
           <%= render '/images/image', image: col.image %>
         <% end %>
         <% if current_user_owns_folio? %>
-          <% if col.caption.nil? && col.image.nil? %>
-            <div class="well" style="text-align: center;">
-              <div style="display: inline-block;">
-                <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                  <%= link_to 'Caption', folio_page_create_caption_path(@folio_page, at: col.id), class: 'btn btn-default' %>
-                  <%= link_to 'Image', folio_page_create_image_path(@folio_page, at: col.id), class: 'btn btn-default' %>
-                  <button type="button" class="btn btn-default" onclick="mergeRight(<%= row[:id] %>, <%= col[:id] %>)">Merge Right</button>
+          <div class="toolbox">
+            <% if col.caption.nil? && col.image.nil? %>
+              <div class="well" style="text-align: center;">
+                <div style="display: inline-block;">
+                  <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                    <%= link_to 'Caption', folio_page_create_caption_path(@folio_page, at: col.id), class: 'btn btn-default' %>
+                    <%= link_to 'Image', folio_page_create_image_path(@folio_page, at: col.id), class: 'btn btn-default' %>
+                    <button type="button" class="btn btn-default" onclick="mergeRight(<%= row[:id] %>, <%= col[:id] %>)">Merge Right</button>
+                  </div>
                 </div>
               </div>
-            </div>
-          <% end %>
+            <% else %>
+              <div class="well well-sm">
+                <div style="text-align: center;">
+                  <span class="badge"><%= !col.caption.nil? ? 'Caption' : 'Image' %></span>
+                  <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                    <% unless col.caption.nil? %>
+                      <%= link_to 'Edit', edit_caption_path(col.caption), class: 'btn btn-default' %>
+                    <% else %>
+                      <%= link_to 'Edit', edit_image_path(col.image), class: 'btn btn-default' %>
+                    <% end %>
+                    <%= link_to 'Delete', folio_page_delete_content_path(@folio_page, at: col.id), class: 'btn btn-default' %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
         <% end %>
       </div>
     <% end %>
@@ -60,11 +79,37 @@
   <% end %>
 
   <script>
+    var editMode = true;
+
     function mergeRight(row_id, id) {
       $('#merge_folio_page_row_column_id')[0].value = id;
       $('#merge_folio_page_row_id')[0].value = row_id;
 
       $('#merge_folio')[0].submit();
     }
+
+    function toggleEditMode() {
+      editMode = !editMode;
+
+      if(editMode) {
+        $('.toolbox').show();
+      } else {
+        $('.toolbox').hide();
+      }
+
+      updateEditModeBtn();
+    }
+
+    function updateEditModeBtn() {
+      if(editMode) {
+        $('#editModeBtn')[0].className = 'btn btn-primary';
+        $('#editModeBtn')[0].innerHTML = 'Edit Mode (on)';
+      } else {
+        $('#editModeBtn')[0].className = 'btn btn-default';
+        $('#editModeBtn')[0].innerHTML = 'Edit Mode (off)';
+      }
+    }
+
+    updateEditModeBtn();
   </script>
 <% end %>

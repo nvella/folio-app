@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     post 'merge_row_column', to: 'merge_row_column'
     get 'create_caption', to: 'create_caption'
     get 'create_image', to: 'create_image'
+    get 'delete_content', to: 'delete_content'
   end
 
   resources :captions, path: 'folios/pages/captions', only: [:edit, :update]
