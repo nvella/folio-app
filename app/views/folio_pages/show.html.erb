@@ -17,21 +17,19 @@
   <div class="row">
     <% row.folio_page_row_columns.each do |col| %>
       <div class="col-md-<%= col.column_width * 3 %>">
-        <% if current_user_owns_folio? %>
-          <% if !col.caption.nil? %>
-            <%= render '/captions/caption', caption: col.caption %>
-          <% end %>
-          <% if col.caption.nil? && col.image.nil? %>
-            <div class="well" style="text-align: center;">
-              <div style="display: inline-block;">
-                <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                  <%= link_to 'Caption', folio_page_create_caption_path(@folio_page, at: col.id), class: 'btn btn-default' %>
-                  <a class="btn btn-default" href="">Image</a>
-                  <button type="button" class="btn btn-default" onclick="mergeRight(<%= row[:id] %>, <%= col[:id] %>)">Merge Right</button>
-                </div>
+        <% if !col.caption.nil? %>
+          <%= render '/captions/caption', caption: col.caption %>
+        <% end %>
+        <% if current_user_owns_folio? && col.caption.nil? && col.image.nil? %>
+          <div class="well" style="text-align: center;">
+            <div style="display: inline-block;">
+              <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                <%= link_to 'Caption', folio_page_create_caption_path(@folio_page, at: col.id), class: 'btn btn-default' %>
+                <a class="btn btn-default" href="">Image</a>
+                <button type="button" class="btn btn-default" onclick="mergeRight(<%= row[:id] %>, <%= col[:id] %>)">Merge Right</button>
               </div>
             </div>
-          <% end %>
+          </div>
         <% end %>
       </div>
     <% end %>
