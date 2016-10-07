@@ -52,3 +52,6 @@ gem 'bootstrap-sass', '~> 3.3.7'
 
 # Omniauth Google
 gem "omniauth-google-oauth2", "~> 0.4.1"
+
+# Redcarpet Markdown
+gem 'redcarpet'
