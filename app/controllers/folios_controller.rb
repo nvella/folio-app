@@ -31,7 +31,7 @@ class FoliosController < ApplicationController
   def update
     needs_authentication
     @folio = Folio.find(params[:id])
-    rause 'Folio doesn\'t exist' if @folio.nil?
+    raise 'Folio doesn\'t exist' if @folio.nil?
     raise 'You don\'t have permission to edit this folio' \
       if current_user != @folio.user
 

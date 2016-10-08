@@ -16,8 +16,9 @@ Rails.application.routes.draw do
 
   resources :captions, path: 'folios/pages/captions', only: [:edit, :update]
   resources :images, path: 'folios/pages/images', only: [:edit, :update]
+  resources :folio_comments, path: 'folios/comments', only: [:create]
 
-  resources :folio_comments, path: 'folio/comments', only: [:create]
+  resources :users, path: 'users', only: [:edit, :update, :show]
 
   root 'landing#index'
 end
